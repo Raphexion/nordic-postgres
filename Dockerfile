@@ -30,12 +30,12 @@ RUN mkdir -p /var/log/postgres \
   && touch /var/log/postgres/log /var/log/postgres/log.csv \
   && chown -R postgres /var/log/postgres
 
-USER postgres
-
-RUN ln -fs /dev/stderr /var/log/postgres/log
-
 RUN \
 	localedef -i da_DK -c -f UTF-8 -A /usr/share/locale/locale.alias da_DK.UTF-8 && \
 	localedef -i sv_SE -c -f UTF-8 -A /usr/share/locale/locale.alias sv_SE.UTF-8 && \
 	localedef -i nb_NO -c -f UTF-8 -A /usr/share/locale/locale.alias nb_NO.UTF-8 && \
 	localedef -i nn_NO -c -f UTF-8 -A /usr/share/locale/locale.alias nn_NO.UTF-8
+
+USER postgres
+
+RUN ln -fs /dev/stderr /var/log/postgres/log
